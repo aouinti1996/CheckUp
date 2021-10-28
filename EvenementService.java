@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Service;
 import Connection.MyConnection;
 import Entité.Evenement;
 import java.sql.*;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /**
@@ -25,25 +16,25 @@ public PreparedStatement ste;
         cnx = MyConnection.getInstance().getConnection();
         
     }
-    
-    public void ajouterEvenement(Evenement e){
+     public void ajouterEvenement(Evenement e){
         try {
-            String sql = "insert into evenement(nomeven,dateeven,descriptioneven)"+"values(?,?,?)";
+            String sql = "insert into evenement(titreeven,descriptioneven,datedebut,datefin,lieueven,invitees,respensable)"+"values(?,?,?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             
-            ste.setString(1, e.getNomeven());
-            ste.setString(2, e.getDateeven());
-            ste.setString(3, e.getDescriptioneven());
+            ste.setString(1, e.getTitreeven());
+            ste.setString(2, e.getDescriptioneven());
+            ste.setDate(3, e.getDatedebut());
+            ste.setDate(4, e.getDatefin());
+            ste.setString(5, e.getLieueven());
+            ste.setString(6, e.getInvitees());
+            ste.setString(7, e.getRespensable());
             ste.executeUpdate();
         }catch (SQLException ex) {
             System.out.println("Evenement non ajoutée !!");
         System.out.println(ex.getMessage());
     }
     }
-    
-    
-    
-    public void supprimerEvenement(int ideven){
+     public void supprimerEvenement(int ideven){
     try {
         String sql = "DELETE FROM evenement WHERE ideven=?" ;
         ste=cnx.prepareStatement(sql);
@@ -55,41 +46,69 @@ public PreparedStatement ste;
             System.err.println(ex.getMessage());
         
     } 
-    
     }
-    public void modifierEvenement(Evenement e){
-    try {
-        String sql = "UPDATE evenement SET dateeven = ?, descriptioneven = ?  WHERE ideven=? " ;
+      public void modifierEvenement(Evenement e)
+      {          
+          try 
+        {
+        String sql = "UPDATE evenement SET titreeven=?, descriptioneven = ?, datedebut = ?, datefin = ?,lieueven = ?,invitees = ?,respensable = ?   WHERE ideven=? " ;
         ste=cnx.prepareStatement(sql);
-        ste.setString(2,e.getDescriptioneven());
-        ste.setString(1, e.getDateeven());
-        ste.setInt(3, e.getIdeven());
+        ste.setString(1, e.getTitreeven());
+        ste.setString(2, e.getDescriptioneven());
+        ste.setDate(3, e.getDatedebut());
+        ste.setDate(4, e.getDatefin());
+        ste.setString(5, e.getLieueven());
+        ste.setString(6, e.getInvitees());
+        ste.setString(7, e.getRespensable());
+        ste.setInt(8, e.getIdeven());
         ste.executeUpdate();
         System.out.println("evenement modifier");
         } catch (SQLException ex) {
           System.out.println("Updated failed !!!");
           System.err.println(ex.getMessage());
         }
-    } 
-    public void afficherEvenement() {
-    try {
-        List<Evenement>evenements=new ArrayList<>();
+    }
+      public ObservableList<Evenement> afficherEvenement() {
+    
+        ObservableList evenements = FXCollections.observableArrayList();
+     try {   
         String sql ="Select * from evenement";
-        ste = cnx.prepareCall(sql);
+        ste = cnx.prepareStatement(sql);
         ResultSet rs;
         rs = ste.executeQuery();
-        Evenement e = new Evenement();
-        while(rs.next()){
-            e.setIdeven(rs.getInt("ideven"));
-            e.setNomeven(rs.getString("nomeven"));
-            e.setDateeven(rs.getString("dateeven"));
-            e.setDescriptioneven(rs.getString("descriptioneven"));
-            evenements.add(e);
+        while(rs.next())
+        {
+            evenements.add(new Evenement(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8)));
         }
     } catch (SQLException ex) {
         System.err.println(ex.getMessage());;
     }
+     return evenements;
         
     }
-   
+    
+      public ObservableList<Evenement> chercherEvenement(String value) 
+    {
+        ObservableList<Evenement> oblist = FXCollections.observableArrayList();
+        try
+        {
+            String req = "SELECT * FROM evenement where titreeven=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, value);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                oblist.add(new Evenement(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getString(8)));
+                
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return oblist;
+    }
+     
+     
+     
 }
