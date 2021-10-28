@@ -27,23 +27,27 @@ public class Gestioneven {
      */
     public static void main(String[] args) {
         MyConnection mc = MyConnection.getInstance();
-            Evenement e1 = new Evenement( 1,"aaaaaaa","02-08-2221", "tres dangereux");
-            Evenement e2 = new Evenement( 2,"bbbbbb","03-06-2009", "dangereux");
-            Evenement e3 = new Evenement( 3,"saratan","03-05-1990", "dangereux");
-            Evenement e4 = new Evenement( 4,"sida","03-08-1999", "dangereux");
-            
-            EvenementService es = new EvenementService();
+/*            Evenement e1 = new Evenement( 1,"hhhhhhh","treessss dangeraux","13/05/2000","12-01-1905","siliana","les medecins","club sante" );
+            Evenement e2 = new Evenement( 2,"ccccccc"," dangeraux","13/05/1995","22-01-2016","nabeul","les medecins et patient","club");
+            Evenement e3 = new Evenement(3,"kkkkkk","incroyable","24-08-1985","19-07-2007","tunisia","les maladies du sucre","clinique sokra");
+       
+EvenementService es = new EvenementService();
             es.ajouterEvenement(e1);
            es.ajouterEvenement(e2);
            es.ajouterEvenement(e3);
-           es.ajouterEvenement(e4);
-           es.supprimerEvenement(2);
-           e2.setIdeven(3);
-           e2.setDateeven("30-07-2015");
-           e2.setDescriptioneven("cette malade est tres dangereux et mortal");
+          
+           es.supprimerEvenement(74);
+           es.supprimerEvenement(71);
+           e2.setIdeven(22);
+           e2.setDescriptioneven("mouch normal");
+           e2.setDatedebut("09-10-1971");
+           e2.setDatefin("29-01-1991");
+           e2.setLieueven("italia");
+           e2.setInvitees("docteur bouzayen");
+           e2.setRespensable("hopital sahloul");
            es.modifierEvenement(e2);
              es.afficherEvenement();
-        
+ */       
         
         
         
