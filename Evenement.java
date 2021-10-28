@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entité;
 
 import java.sql.Date;
@@ -13,69 +8,115 @@ import java.sql.Date;
  */
 public class Evenement {
    private int ideven;
-   private String nomeven;
-   private String dateeven;
+   private String titreeven;
     private String descriptioneven;
+    private Date datedebut;
+    private Date datefin;
+    private String lieueven;
+    private String invitees;
+    private String respensable;
     
-public Evenement() {};
-/*public Evenement(Integer ideven) {
-        this.ideven = ideven;
+    
+    public Evenement()
+    {
+        //Empty Constructor
     }
-public Evenement(String dateeven, String descriptioneven) {
-        this.dateeven = dateeven;
-        this.descriptioneven = descriptioneven;
-    }*/
-public Evenement(String nomeven,String dateeven, String descriptioneven) {
+    public Evenement(String titreeven, String descriptioneven, Date datedebut,Date datefin,String lieueven,String invitees,String respensable) {
    
-        this.nomeven = nomeven;
-        this.dateeven = dateeven;
+        this.titreeven = titreeven;
         this.descriptioneven = descriptioneven;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.lieueven = lieueven;
+        this.invitees = invitees;
+        this.respensable = respensable;
     }
-     public Evenement(Integer ideven,String nomeven, String dateeven, String descriptioneven) {
-         
-        
+    
+     
+    public Evenement(int ideven, String titreeven, String descriptioneven, Date datedebut,Date datefin,String lieueven,String invitees,String respensable) {
         this.ideven = ideven;
-        this.nomeven = nomeven;
-        this.dateeven = dateeven;
+        this.titreeven = titreeven;
         this.descriptioneven = descriptioneven;
-}
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.lieueven = lieueven;
+        this.invitees = invitees;
+        this.respensable = respensable;
+    }
 
     public int getIdeven() {
         return ideven;
-    }
-
-    public String getNomeven() {
-        return nomeven;
-    }
-
-    public String getDateeven() {
-        return dateeven;
-    }
-
-    public String getDescriptioneven() {
-        return descriptioneven;
     }
 
     public void setIdeven(int ideven) {
         this.ideven = ideven;
     }
 
-    public void setNomeven(String nomeven) {
-        this.nomeven = nomeven;
+    public String getTitreeven() {
+        return titreeven;
     }
 
-    public void setDateeven(String dateeven) {
-        this.dateeven = dateeven;
+    public void setTitreeven(String titreeven) {
+        this.titreeven = titreeven;
+    }
+
+    public String getDescriptioneven() {
+        return descriptioneven;
     }
 
     public void setDescriptioneven(String descriptioneven) {
         this.descriptioneven = descriptioneven;
     }
 
+    public Date getDatedebut() {
+        return datedebut;
+    }
+
+    public void setDatedebut(Date datedebut) {
+        this.datedebut = datedebut;
+    }
+
+    public Date getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(Date datefin) {
+        this.datefin = datefin;
+    }
+
+    public String getLieueven() {
+        return lieueven;
+    }
+
+    public void setLieueven(String lieueven) {
+        this.lieueven = lieueven;
+    }
+
+    public String getInvitees() {
+        return invitees;
+    }
+
+    public void setInvitees(String invitees) {
+        this.invitees = invitees;
+    }
+
+    public String getRespensable() {
+        return respensable;
+    }
+
+    public void setRespensable(String respensable) {
+        this.respensable = respensable;
+    }
+
     @Override
     public String toString() {
-        return "Evenement{" + "ideven=" + ideven + ", nomeven=" + nomeven + ", dateeven=" + dateeven + ", descriptioneven=" + descriptioneven + '}';
+        return "Evenement{" + "ideven=" + ideven + ", titreeven=" + titreeven + ", descriptioneven=" + descriptioneven + ", datedebut=" + datedebut + ", datefin=" + datefin + ", lieueven=" + lieueven + ", invitees=" + invitees + ", respensable=" + respensable + '}';
     }
- 
+    
+    
+    
+    
+    
+    
+    
 }
-
