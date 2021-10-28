@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" fx:id="sceneDescription" prefHeight="558.0" prefWidth="726.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gestionevenement.gui.AfficherDescriptionController">
+   <children>
+      <TextArea fx:id="Descriptionevenement" layoutX="153.0" layoutY="125.0" prefHeight="359.0" prefWidth="434.0" wrapText="true" />
+      <Label layoutX="246.0" layoutY="30.0" prefHeight="53.0" prefWidth="261.0" text="Description">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnretour" layoutX="33.0" layoutY="31.0" mnemonicParsing="false" onAction="#btn_retour_decription" prefHeight="31.0" prefWidth="57.0" text="retour" />
+   </children>
+</AnchorPane>
