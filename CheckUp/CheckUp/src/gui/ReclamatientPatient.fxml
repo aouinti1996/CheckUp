@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="531.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReclamatientPatientController">
+   <children>
+      <TableView fx:id="TableView_P" layoutX="14.0" layoutY="14.0" prefHeight="361.0" prefWidth="1299.0">
+        <columns>
+          <TableColumn fx:id="id_P" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="username_p" prefWidth="152.0" text="Username" />
+            <TableColumn fx:id="object_P" prefWidth="193.0" text="Object" />
+            <TableColumn fx:id="status_P" prefWidth="150.0" text="Status" />
+            <TableColumn fx:id="description_P" prefWidth="233.0" text="Description" />
+            <TableColumn fx:id="Screenshot_P" prefWidth="183.0" text="Screenshot" />
+            <TableColumn fx:id="email_P" prefWidth="311.0" text="Email" />
+        </columns>
+      </TableView>
+      <Button layoutX="36.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_Consulter" prefHeight="55.0" prefWidth="169.0" text="consulter" />
+      <Button layoutX="217.0" layoutY="398.0" mnemonicParsing="false" onAction="#btn_Supprimer" prefHeight="55.0" prefWidth="169.0" text="Supprimer" />
+   </children>
+</AnchorPane>
