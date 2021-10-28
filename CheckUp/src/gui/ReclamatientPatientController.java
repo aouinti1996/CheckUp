@@ -8,6 +8,8 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +18,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -252,22 +257,100 @@ public TableCell call(final TableColumn<Reclamation, String> param) {
         } else {
             d = TableView_P.getSelectionModel().getSelectedItem();
 
-            
-            
-          
-
         Parent root = FXMLLoader.load(getClass().getResource("ConsulterPatient.fxml"));
         Scene scene = new Scene(root);
         stageConsulter = new Stage();
         stageConsulter.setScene(scene);
         stageConsulter.show();
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
 
     
 }
+            public void list() {
+        ReclamationService rs = new ReclamationService();
+        ArrayList arrayList = (ArrayList) rs.afficherReclamationPerUserWithReponse(user1);
+        ObservableList observableList = FXCollections.observableArrayList(arrayList);
+        TableView_P.setItems(observableList);
+        
+        }
+            
+                        public void list2() {
+        ReclamationService rs = new ReclamationService();
+        ArrayList arrayList = (ArrayList) rs.afficherReclamationPerUserWithoutReponse(user1);
+        ObservableList observableList = FXCollections.observableArrayList(arrayList);
+        TableView_patient.setItems(observableList);
+        
+        }
       @FXML
     private void btn_Supprimer(ActionEvent event) {
-    }  
+        
+                      if (TableView_P.getSelectionModel().isEmpty()) {
+            Notifications n = Notifications.create()
+                    .title("Erreur")
+                    .text("Choix invalide")
+                    .graphic(null)
+                    .position(Pos.TOP_CENTER)
+                    .hideAfter(Duration.seconds(5));
+            n.showWarning();
+        } else {
+            List<Reclamation> reclamation = TableView_P.getSelectionModel().getSelectedItems();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Vous voulez vraiment supprimer cette reclamation");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                new ReclamationService().deleteReclamation(reclamation.get(0).getId());
+                System.out.println(reclamation.get(0).getId());
+            }
+        }
+        list();
+    }
+
+    @FXML
+    private void btn_Supprimer2(ActionEvent event) {
+          if (TableView_patient.getSelectionModel().isEmpty()) {
+            Notifications n = Notifications.create()
+                    .title("Erreur")
+                    .text("Choix invalide")
+                    .graphic(null)
+                    .position(Pos.TOP_CENTER)
+                    .hideAfter(Duration.seconds(5));
+            n.showWarning();
+        } else {
+            List<Reclamation> reclamation = TableView_patient.getSelectionModel().getSelectedItems();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Vous voulez vraiment supprimer cette reclamation");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                new ReclamationService().deleteReclamation(reclamation.get(0).getId());
+                System.out.println(reclamation.get(0).getId());
+            }
+        }
+        list2();
+    }
+
+    @FXML
+    private void btn_Quitter(ActionEvent event) {
+        
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(" Ajouter Reclamation");
+            stage.show();
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+    }
+      
     
-}
