@@ -18,8 +18,7 @@
             <TableColumn fx:id="table_Email" prefWidth="290.0" text="Email" />
          </columns>
       </TableView>
-      <Button layoutY="511.0" mnemonicParsing="false" onAction="#btn_update_reclamation_table" prefHeight="58.0" prefWidth="163.0" text="Repondre" />
+      <Button layoutY="511.0" mnemonicParsing="false" onAction="#btn_update_reclamation_table" prefHeight="58.0" prefWidth="163.0" text="Modiier" />
       <Button layoutX="171.0" layoutY="511.0" mnemonicParsing="false" onAction="#btn_delete_reclamation_table" prefHeight="58.0" prefWidth="163.0" text="supprimer" />
-      <Button layoutX="1316.0" layoutY="514.0" mnemonicParsing="false" onAction="#btn_quitter" prefHeight="58.0" prefWidth="163.0" text="Quitter" />
    </children>
 </AnchorPane>

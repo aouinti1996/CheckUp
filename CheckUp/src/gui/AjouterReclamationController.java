@@ -14,21 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
-import org.controlsfx.control.Notifications;
 import reclamation.Reclamation;
 import reclamation.User;
 import service.ReclamationService;
@@ -45,19 +39,20 @@ public class AjouterReclamationController implements Initializable {
     SessionService session = new SessionService(user1,true);
     private String path;
     @FXML
+    private TextField txtUsername;
+    @FXML
     private TextField txtObject;
     @FXML
     private TextField txtDescription;
+    @FXML
     private TextField txtEmail;
     @FXML
     private ImageView imgview;
     File selectedFile;
     @FXML
     private Button image;
-    Notifications n;
-    @FXML
-    private ImageView objectCheckMark;
-  String erreur;
+   
+
 
 
     
@@ -76,19 +71,11 @@ public class AjouterReclamationController implements Initializable {
         User aUsername = session.getCurrentUser();
         String aObject = txtObject.getText();
         String aDescription = txtDescription.getText();
-        
+        String aEmail = txtEmail.getText();
        
-       Reclamation r = new Reclamation(aUsername,aObject,"En attente",aDescription,path,"hhhh@");
+       Reclamation r = new Reclamation(aUsername,aObject,"En attente",aDescription,path,aEmail);
         ReclamationService rs =new ReclamationService();
         rs.ajouterReclamation(r);
-        n = Notifications.create()
-                    .title("Succes")
-                    .text("Reclamation envoyé avec succes")
-                    .graphic(null)
-                    .position(Pos.TOP_CENTER)
-                    .hideAfter(Duration.seconds(3));
-            n.showInformation();
-
         if (selectedFile != null) {
             try {
                 
@@ -101,20 +88,9 @@ public class AjouterReclamationController implements Initializable {
             }
         
     }
-    
 
     @FXML
     private void btn_Annuler(ActionEvent event) {
- try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(" Ajouter Reclamation");
-            stage.show();
-        } catch (IOException ex) {
-            ex.getMessage();
-        }
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
         

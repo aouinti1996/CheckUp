@@ -56,7 +56,7 @@ public class ModifierReclamationController implements Initializable {
     int id;
     @FXML
     private TextField txtReponse;
-    Notifications n;
+
     /**
      * Initializes the controller class.
      */
@@ -129,13 +129,6 @@ image.setText(path);
         ReponseService rs =new ReponseService();
         System.out.println(id);
         rs.ajouterReponse(p,id);
-         n = Notifications.create()
-                    .title("Succes")
-                    .text("Reponse envoyé avec succes")
-                    .graphic(null)
-                    .position(Pos.TOP_CENTER)
-                    .hideAfter(Duration.seconds(3));
-            n.showInformation();
 
     }
     

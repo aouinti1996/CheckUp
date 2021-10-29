@@ -62,7 +62,7 @@ public PreparedStatement ste;
         {Reclamation R = new Reclamation();
          
          R.setId(resultSet.getInt(1));
-         R.setUsername(resultSet.getString(10));
+         R.setUsername(resultSet.getString(9));
          R.setObject(resultSet.getString(4));
          R.setStatus(resultSet.getString(5));
          R.setDescription(resultSet.getString(6));
@@ -77,13 +77,13 @@ public PreparedStatement ste;
      return myList;
         
     }
-    public List<Reclamation> afficherReclamationPerUserWithReponse(User user) {
+    public List<Reclamation> afficherReclamationPerUser(User user) {
     
         List<Reclamation> myList = new ArrayList<Reclamation>();
         int idUser = user.getId();
         System.out.println("Id user : "+idUser);
      try {   
-        String sql ="Select * from reclamation,reponse where reclamation.id_user=? and reclamation.id_reponse = reponse.id"; 
+        String sql ="Select * from reclamation,reponse where reclamation.id_user=?"; 
         ste = cnx.prepareStatement(sql);
         ste.setInt(1, idUser);
         ResultSet resultSet;
@@ -92,38 +92,7 @@ public PreparedStatement ste;
         while(resultSet.next())
         {Reclamation R = new Reclamation();
          R.setId(resultSet.getInt(1));
-         R.setUsername(resultSet.getString(10));
-         R.setObject(resultSet.getString(4));
-         R.setStatus(resultSet.getString(5));
-         R.setDescription(resultSet.getString(6));
-         R.setScreenshot("file:C:\\xampp\\htdocs\\CheckUP\\web\\uploads\\images\\" + resultSet.getString(7));
-         R.setEmail(resultSet.getString(8));
-         myList.add(R);
-
-        }
-    } catch (SQLException ex) {
-        System.err.println(ex.getMessage());;
-    }
-     return myList;
-        
-    }
-    
-    public List<Reclamation> afficherReclamationPerUserWithoutReponse(User user) {
-    
-        List<Reclamation> myList = new ArrayList<Reclamation>();
-        int idUser = user.getId();
-        System.out.println("Id user : "+idUser);
-     try {   
-        String sql ="Select * from reclamation where reclamation.id_user=? and reclamation.id_reponse is null;"; 
-        ste = cnx.prepareStatement(sql);
-        ste.setInt(1, idUser);
-        ResultSet resultSet;
-        resultSet = ste.executeQuery();
-        
-        while(resultSet.next())
-        {Reclamation R = new Reclamation();
-         R.setId(resultSet.getInt(1));
-         
+         R.setUsername(resultSet.getString(9));
          R.setObject(resultSet.getString(4));
          R.setStatus(resultSet.getString(5));
          R.setDescription(resultSet.getString(6));
