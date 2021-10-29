@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="799.0" style="-fx-background-color: #53639F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ModifierUserController">
+   <children>
+      <VBox prefHeight="79.0" prefWidth="683.0" />
+      <HBox prefHeight="93.0" prefWidth="795.0">
+         <children>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier utilisateur" textAlignment="CENTER" wrappingWidth="794.6708984375">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Text layoutX="134.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="prenom_update" layoutX="211.0" layoutY="121.0" prefHeight="31.0" prefWidth="205.0" />
+      <Text layoutX="134.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="41.4052734375">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="email_user" layoutX="232.0" layoutY="209.0" prefHeight="31.0" prefWidth="205.0" />
+      <Text layoutX="122.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe ">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="mdp_user" layoutX="235.0" layoutY="244.0" prefHeight="31.0" prefWidth="205.0" />
+      <Text layoutX="90.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Telephone">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text layoutX="117.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <JFXTextField fx:id="adresse_user" layoutX="253.0" layoutY="338.0" prefHeight="31.0" prefWidth="196.0" />
+      <JFXTextField fx:id="numtelephoneuser" layoutX="249.0" layoutY="295.0" prefHeight="31.0" prefWidth="196.0" />
+      <Text layoutX="91.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="135.34814453125">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <JFXDatePicker fx:id="datenaiss_user_update" defaultColor="#832702" layoutX="224.0" layoutY="163.0" prefHeight="31.0" prefWidth="230.0" />
+      <Text layoutX="143.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="name_update_user" layoutX="211.0" layoutY="79.0" prefHeight="31.0" prefWidth="205.0" />
+      <Button fx:id="btn_annuler" layoutX="403.0" layoutY="479.0" mnemonicParsing="false" onAction="#onclickannuler" prefHeight="52.0" prefWidth="157.0" style="-fx-background-color: #801818;" text="Annuler" />
+      <Button fx:id="btn_update" layoutX="175.0" layoutY="479.0" mnemonicParsing="false" onAction="#onclickupdate" prefHeight="52.0" prefWidth="157.0" style="-fx-background-color: #801818;" text="Enregistrer" />
+      <Label fx:id="label_spec_update" layoutX="111.0" layoutY="412.0" text="Specialite">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
+      <ComboBox fx:id="specialite_cbx_update" layoutX="227.0" layoutY="407.0" prefHeight="31.0" prefWidth="230.0" />
+      <FontAwesomeIconView glyphName="SAVE" layoutX="185.0" layoutY="509.0" size="20" />
+      <FontAwesomeIconView glyphName="REMOVE" layoutX="416.0" layoutY="509.0" size="20" />
+   </children>
+</AnchorPane>
