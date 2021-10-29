@@ -34,6 +34,13 @@ public class Reclamation {
         this.email = email;
     }
 
+    public Reclamation(String object, String status, String description, String screenshot) {
+        this.object = object;
+        this.status = status;
+        this.description = description;
+        this.screenshot = screenshot;
+    }
+
     public Reponse getReponse() {
         return reponse;
     }
@@ -113,7 +120,9 @@ public class Reclamation {
         return "Reclamation{" + "id=" + id + ", user =" + user + ", object=" + object + ", status=" + status + ", description=" + description + ", screenshot=" + screenshot + ", email=" + email + '}';
     }
 
-   
+   public Reclamation getReclamation(){
+       return this;
+   }
 
 }
 

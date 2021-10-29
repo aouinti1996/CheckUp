@@ -6,14 +6,20 @@
 package gui;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import service.ReclamationService;
 
 /**
@@ -33,8 +39,6 @@ public class ConsulterPatientController implements Initializable {
     private TextField txtEmailp;
     @FXML
     private ImageView imgview;
-    @FXML
-    private TextField txtReponsep;
     File selectedFile;
     private String path;
 int id;
@@ -56,13 +60,27 @@ int id;
         txtObjectp.setText(ReclamatientPatientController.d.getObject());
         imgview.setImage(new Image(ReclamatientPatientController.d.getScreenshot()));
         txtDescriptionp.setText(ReclamatientPatientController.d.getDescription());
-        id=ReclamatientPatientController.d.getId();
+        ReclamatientPatientController.d.getId();
     }   
     
     
 
     @FXML
     private void btn_Back(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamatientPatient.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Main Menu");
+            stage.show();
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    } 
+    
     }
     
-}
+

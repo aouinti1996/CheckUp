@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -85,7 +86,7 @@ public class DetailsReclamationController implements Initializable {
         ReclamationService rs = new ReclamationService();
        ArrayList arrayList = (ArrayList) rs.afficherReclamation();
         ObservableList observableList = FXCollections.observableArrayList(arrayList);
-tableview_Reclamation.setItems(observableList);
+        tableview_Reclamation.setItems(observableList);
         tableview_Reclamation.getColumns().addAll(table_Id, table_Username,table_Object,table_Description,table_Screenshot,table_Email,table_Status);
 
                 Callback<TableColumn<Reclamation, String>, TableCell<Reclamation, String>> cellFactoryImage
@@ -172,17 +173,14 @@ public TableCell call(final TableColumn<Reclamation, String> param) {
             n.showWarning();
         } else {
             d = tableview_Reclamation.getSelectionModel().getSelectedItem();
-
             
-            
-          
-
         Parent root = FXMLLoader.load(getClass().getResource("ModifierReclamation.fxml"));
         Scene scene = new Scene(root);
         stageModifier = new Stage();
         stageModifier.setScene(scene);
         stageModifier.show();
-            
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();    
             
 
         }
@@ -203,7 +201,7 @@ public TableCell call(final TableColumn<Reclamation, String> param) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Vous voulez vraiment supprimer cette categorie");
+            alert.setContentText("Vous voulez vraiment supprimer cette reclamation");
             Optional<ButtonType> action = alert.showAndWait();
             if (action.get() == ButtonType.OK) {
                 new ReclamationService().deleteReclamation(reclamation.get(0).getId());
@@ -212,6 +210,23 @@ public TableCell call(final TableColumn<Reclamation, String> param) {
         }
         list();
     }
+
+    @FXML
+    private void btn_quitter(ActionEvent event) {
+  try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Main Menu");
+            stage.show();
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    } 
+    
 }
 
 

@@ -5,6 +5,7 @@
  */
 package gui;
 
+import static gui.ReclamatientPatientController.d;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,7 +14,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,107 +25,73 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
 import org.controlsfx.control.Notifications;
 import reclamation.Reclamation;
-import reclamation.User;
 import service.ReclamationService;
-import service.SessionService;
-
 
 /**
  * FXML Controller class
  *
  * @author houss
  */
-public class AjouterReclamationController implements Initializable {
-    User user1 = new User(1,"diyamitra");
-    SessionService session = new SessionService(user1,true);
-    private String path;
+public class ModifierReclamationPatientController implements Initializable {
+
     @FXML
     private TextField txtObject;
     @FXML
     private TextField txtDescription;
-    private TextField txtEmail;
     @FXML
     private ImageView imgview;
-    File selectedFile;
     @FXML
     private Button image;
-    Notifications n;
     @FXML
     private ImageView objectCheckMark;
-  String erreur;
-
-
+    File selectedFile;
+    private String path;
     
-
+    int id;
+    Notifications n;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgview.setOnDragOver(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if (db.hasFiles()) {
-                    event.acceptTransferModes(TransferMode.COPY);
-                } else {
-                    event.consume();
-                }
-            }
-        });
-
-        // Dropping over surface
-        imgview.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasFiles()) {
-                    success = true;
-                    path = null;
-                    for (File file : db.getFiles()) {
-                        path = file.getName();
-                        selectedFile = new File(file.getAbsolutePath());
-                        System.out.println("Drag and drop file done and path=" + file.getAbsolutePath());//file.getAbsolutePath()="C:\Users\X\Desktop\ScreenShot.6.png"
-                        imgview.setImage(new Image("file:" + file.getAbsolutePath()));
-//                        screenshotView.setFitHeight(150);
-//                        screenshotView.setFitWidth(250);
-                        image.setText(path);
-                    }
-                }
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        });
-
-        imgview.setImage(new Image("file:\"C:\\Users\\houss\\Desktop\\EX_project\\CheckUp\\src\\Images\\drag-drop.gif\""));
-        
         // TODO
-    } 
-    
-
-    @FXML
-    private void btn_Valider(ActionEvent event) {
-        User aUsername = session.getCurrentUser();
-        String aObject = txtObject.getText();
-        String aDescription = txtDescription.getText();
+                 ReclamationService rs = new ReclamationService();
         
        
-       Reclamation r = new Reclamation(aUsername,aObject,"En attente",aDescription,path,"houssem095@gmail.com");
+     
+        path=ReclamatientPatientController.d.getScreenshot();
+
+        txtObject.setText(ReclamatientPatientController.d.getObject());
+        imgview.setImage(new Image(ReclamatientPatientController.d.getScreenshot()));
+        txtDescription.setText(ReclamatientPatientController.d.getDescription());
+        id=ReclamatientPatientController.d.getId();
+        
+    }    
+
+    @FXML
+    private void btn_Valider_Modifier(ActionEvent event) {
+       String aObject = txtObject.getText();
+    String aDescription = txtDescription.getText();
+        ReclamatientPatientController.d.setObject(aObject);
+        ReclamatientPatientController.d.setDescription(aDescription);
+        ReclamatientPatientController.d.setScreenshot(path);
+        
+        System.out.println(ReclamatientPatientController.d.toString());
+       //Reclamation r = new Reclamation(aObject,"En attente",aDescription,path);
+       Reclamation r = ReclamatientPatientController.d;
+        System.out.println("Testing getRec"+r.toString());
+       
         ReclamationService rs =new ReclamationService();
-        rs.ajouterReclamation(r);
+        rs.updateReclamation(r);
         n = Notifications.create()
                     .title("Succes")
-                    .text("Reclamation envoyé avec succes")
+                    .text("Reclamation modifier avec succes")
                     .graphic(null)
                     .position(Pos.TOP_CENTER)
                     .hideAfter(Duration.seconds(3));
@@ -140,15 +106,17 @@ public class AjouterReclamationController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(AjouterReclamationController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-        
+        }
+
+
+       
+
     }
-    
 
     @FXML
-    private void btn_Annuler(ActionEvent event) {
- try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+    private void btn_Annuler_modifier(ActionEvent event) {
+                    try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamatientPatient.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -159,12 +127,7 @@ public class AjouterReclamationController implements Initializable {
         }
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
-        
-
-        
     }
-
-  
 
     @FXML
     private void image(ActionEvent event) {
@@ -191,5 +154,4 @@ image.setText(path);
                 }
     }
     
-    }
-
+}

@@ -22,7 +22,7 @@ public class CheckUp {
 //        // TODO code application logic here
 //            MyConnection mc = MyConnection.getInstance();
 //            Reclamation p1 = new Reclamation( 1,"houssem123", "i have problem ", "ajajgajzf,a;zdd",,"zzz@zzz");
-//            ReclamationService ps = new ReclamationService();
+           ReclamationService ps = new ReclamationService();
 //             
 //            ps.ajouterReclamation(p1);
 //
@@ -32,7 +32,7 @@ public class CheckUp {
 //            p1.setObject("balbalbalbalbadl");
 //            ps.updateReclamation(p1);
 //            System.out.println(ps.afficherReclamation());
-            
+            System.out.println("you have:"+ps.nbReclamation() + "reclamation");
            
     }
     

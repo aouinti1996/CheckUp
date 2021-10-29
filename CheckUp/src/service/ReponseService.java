@@ -22,6 +22,8 @@ public class ReponseService {
       public Connection cnx;
 public PreparedStatement ste;
 public PreparedStatement ste2;
+public long id_reponse;
+JavaMail mail = new JavaMail();
     public ReponseService() {  
         cnx = MyConnection.getInstance().getConnection();
     }
@@ -29,7 +31,7 @@ public PreparedStatement ste2;
     public void ajouterReponse(Reponse p, int id_rec){
     try {
         String sql = "insert into reponse(text)"+"values(?)";
-        String sql2 = "update reclamation set status = 'traité' and id_reponse = ? where reclamation.id = ?";
+        String sql2 = "update reclamation set status = 'traité' , id_reponse = ? where reclamation.id = ?";
         ste=cnx.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         ste2=cnx.prepareStatement(sql2);
         ste.setString(1, p.getText());
@@ -39,16 +41,18 @@ public PreparedStatement ste2;
       try (ResultSet generatedKeys = ste.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 System.out.println((generatedKeys.getLong(1)));
+                id_reponse = generatedKeys.getLong(1);
             }
             else {
                 throw new SQLException("Creating reponse failed, no ID obtained.");
             }
         }
        
-        ste2.setInt(1,p.getId());
+        ste2.setInt(1,(int)id_reponse);
         ste2.setInt(2, id_rec);
         ste2.executeUpdate();
         System.out.println("Reponse added");
+        mail.send("theoptimizers7@gmail.com", "Aouinti007", "houssem095@gmail.com", "", "l'admin vous a repondu à votre reclamation");
     } catch (SQLException ex) {
         System.out.println("rani manajamtech n7ot fel base");
                 
