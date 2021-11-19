@@ -1,0 +1,39 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+
+    <main id="main" class="main">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Liste des évènements</h5>
+
+                <!-- Default Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Date Début</th>
+                        <th scope="col">Date Fin</th>
+                        <th scope="col">Responsable</th>
+                        <th scope="col">Invité</th>
+                        <th scope="col" colspan="2">Gestion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr {% for e in evenements %}>
+                        <th scope="row">{{ e.titreeven }}</th>
+                        <td>{{ e.datedebut|date('Y-m-d') }}</td>
+                        <td>{{ e.datefin|date('Y-m-d') }}</td>
+                        <td>{{ e.responsable }}</td>
+                        <td>{{ e.invites }}</td>
+                        <td><div class="btn-group"> <a href="{{ path('evenement_edit', {'id':e.id}) }}" ><button type="button" class="btn btn-warning">Modifier</button></a></div></td>
+                        <td><div class="btn-group"> <a href="{{ path('evenement_delete', {'id':e.id}) }}" ><button type="button" class="btn btn-danger">Supprimer</button></a></div></td>
+                    </tr {% endfor %}>
+
+                    </tbody>
+                </table>
+                <!-- End Default Table Example -->
+            </div>
+        </div>
+    </main>
+{% endblock %}
