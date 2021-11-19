@@ -29,4 +29,19 @@ class FrontController extends AbstractController
             'controller_name' => 'FrontController',
         ]);
     }
+
+
+    /**
+     * @return Response
+     * @Route("/formsignup", name="inscriptionup")
+     */
+    public function getrouteForm()
+    {
+
+        return $this->render('register/inscription.html.twig', [
+            'controller_name' => 'RegisterController',
+        ]);
+
+
+    }
 }

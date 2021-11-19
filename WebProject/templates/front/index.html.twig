@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {%  block title  %}
         <title>DentaCare - Free Bootstrap 4 Template by Colorlib</title>
     {%  endblock   %}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -45,7 +47,29 @@
                 <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Make an Appointment</span></a></li>
+
+
+                <li class="dropdown"><a href={{ path('affichetabpatient') }} class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>S'inscrire</span></a>
+                    <ul>
+                        <li ><a  href="" data-toggle="modal" data-target="#modalRequest"><span>Patient</span></a>
+
+                        <li><a href="#">Medecin</a></li>
+
+                    </ul>
+
+
+
+
+
+
+
+
+                </li>
+                <li class="nav-item cta"><a href={{ path('affichetabpatient') }} class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Login In</span><i class="bi bi-chevron-down"></i></a>
+                </li>
+
+
+
             </ul>
         </div>
     </div>
@@ -707,7 +731,7 @@
                     <h2 class="mb-2">Get a Free Quote</h2>
                 </div>
 
-                {% block form %}
+
                 <form action="#" class="ftco-animate">
                     <div class="row">
                         <div class="col-md-6">
@@ -832,11 +856,12 @@
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 <!-- Modal -->
+{% block Modal %}
 <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalRequestLabel">Make an Appointment</h5>
+                <h5 class="modal-title" id="modalRequestLabel">créer un compte</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -845,7 +870,11 @@
                 <form action="#">
                     <div class="form-group">
                         <!-- <label for="appointment_name" class="text-black">Full Name</label> -->
-                        <input type="text" class="form-control" id="appointment_name" placeholder="Full Name">
+                        <input type="text" class="form-control" id="appointment_name" placeholder="Nom">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="appointment_name" class="text-black">Full Name</label> -->
+                        <input type="text" class="form-control" id="appointment_name" placeholder="Prenome">
                     </div>
                     <div class="form-group">
                         <!-- <label for="appointment_email" class="text-black">Email</label> -->
@@ -861,7 +890,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <!-- <label for="appointment_time" class="text-black">Time</label> -->
-                                <input type="text" class="form-control appointment_time" placeholder="Time">
+                                <input type="text" class="form-control appointment_time" placeholder="Timeaaaaa">
                             </div>
                         </div>
                     </div>
@@ -872,16 +901,16 @@
                         <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Make an Appointment" class="btn btn-primary">
+                        <input type="submit" value="S'inscrire" class="btn btn-primary">
                     </div>
                 </form>
+
             </div>
 
         </div>
     </div>
 </div>
-{% endblock form %}
-
+{% endblock %}
 <script src="front/js/jquery.min.js"></script>
 <script src="front/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="front/js/popper.min.js"></script>
@@ -899,6 +928,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="front/js/google-map.js"></script>
 <script src="front/js/main.js"></script>
+
 
 </body>
 </html>

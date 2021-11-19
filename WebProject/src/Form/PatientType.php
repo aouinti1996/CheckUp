@@ -33,7 +33,7 @@ class PatientType extends AbstractType
                 ],
             ])
             ->add('role')
-            ->add('Enregistrer',SubmitType::class);
+            ->add('Enregistrer',SubmitType::class,);
         ;
     }
 

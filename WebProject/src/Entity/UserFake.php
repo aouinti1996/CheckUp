@@ -2,99 +2,41 @@
 
 namespace App\Entity;
 
+use App\Repository\UserFakeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * UserFake
- *
- * @ORM\Table(name="user_fake")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UserFakeRepository::class)
  */
-class UserFake
+class UserFake implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Nom", type="string", length=70, nullable=false)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Prenom", type="string", length=70, nullable=false)
-     */
-    private $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="datenaissance", type="string", length=20, nullable=false)
-     */
-    private $datenaissance;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=30, nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDatenaissance(): ?string
-    {
-        return $this->datenaissance;
-    }
-
-    public function setDatenaissance(string $datenaissance): self
-    {
-        $this->datenaissance = $datenaissance;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -109,17 +51,67 @@ class UserFake
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->role;
+        return (string) $this->email;
     }
 
-    public function setRole(string $role): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->role = $role;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
 
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
 }

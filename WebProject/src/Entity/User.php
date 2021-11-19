@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity
  */
 class User
 {
@@ -96,117 +98,186 @@ class User
      */
     private $role;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+    /**
+     * @return int
+     *
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    /**
+     * @param string|null $nom
+     */
+    public function setNom(?string $nom): void
     {
         $this->nom = $nom;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    /**
+     * @param string|null $prenom
+     */
+    public function setPrenom(?string $prenom): void
     {
         $this->prenom = $prenom;
-
-        return $this;
     }
 
-
-    public function getDatenaissance(): ?\DateTimeInterface
+    /**
+     * @return \DateTime|null
+     */
+    public function getDatenaissance(): ?\DateTime
     {
         return $this->datenaissance;
     }
 
-    public function setDatenaissance(\DateTimeInterface $datenaissance): self
+    /**
+     * @param \DateTime|null $datenaissance
+     */
+    public function setDatenaissance(?\DateTime $datenaissance): void
     {
         $this->datenaissance = $datenaissance;
-
-        return $this;
     }
+
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    /**
+     * @param string|null $password
+     */
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNumerotelephone(): ?string
     {
         return $this->numerotelephone;
     }
 
-    public function setNumerotelephone(string $numerotelephone): self
+    /**
+     * @param string|null $numerotelephone
+     */
+    public function setNumerotelephone(?string $numerotelephone): void
     {
         $this->numerotelephone = $numerotelephone;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getAdresse(): ?string
     {
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    /**
+     * @param string|null $adresse
+     */
+    public function setAdresse(?string $adresse): void
     {
         $this->adresse = $adresse;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSpecialite(): ?string
     {
         return $this->specialite;
     }
 
-    public function setSpecialite(?string $specialite): self
+    /**
+     * @param string|null $specialite
+     */
+    public function setSpecialite(?string $specialite): void
     {
         $this->specialite = $specialite;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 
-    public function setRole(string $role): self
+    /**
+     * @param string|null $role
+     */
+    public function setRole(?string $role): void
     {
         $this->role = $role;
+    }
 
-        return $this;
+    /**
+     * @return bool
+     */
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * @param bool $isVerified
+     */
+    public function setIsVerified(bool $isVerified): void
+    {
+        $this->isVerified = $isVerified;
     }
 
 

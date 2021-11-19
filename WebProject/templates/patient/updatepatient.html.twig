@@ -36,23 +36,18 @@
     {{ form_start(form) }}
 <div class="container mt-4">
     <h1>Editer un patient </h1>
-    <div class="row">
-        <div class="col-md-4">{{ form_row(form.nom) }}</div>
-        <div class="col-md-4">{{ form_row(form.prenom) }}</div>
-        <div class="col-md-4">{{ form_row(form.datenaissance) }}</div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">{{ form_row(form.email) }}</div>
-        <div class="col-md-2">{{ form_row(form.password) }}</div>
-        <div class="col-md-2">{{ form_row(form.numerotelephone)}}</div>
-        <div class="col-md-2">{{ form_row(form.adresse)}}</div>
-    </div>
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
-    <div class="row">
-        <div class="col-md-5">{{ form_row(form.specialite) }}</div>
-        <div class="col-md-2">{{ form_row(form.role) }}</div>
-    </div>
-    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <table>
+        <tr>
+            <td></td>
+
+            <td> <button class="btn-primary"><i class="bi bi-person-plus"></i>
+                    Modifier </button></td>
+        </tr>
+    </table>
+
 
 
 </div>

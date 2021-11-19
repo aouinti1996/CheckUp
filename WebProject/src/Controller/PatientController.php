@@ -24,7 +24,7 @@ class PatientController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('patient/index.html.twig', [
+        return $this->render('patient/inscription.html.twig', [
             'controller_name' => 'PatientController',
         ]);
     }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Medecin
  *
  * @ORM\Table(name="medecin")
- * @ORM\Entity(repositoryClass="App\Repository\MedecinRepository")
+ * @ORM\Entity
  */
 class Medecin
 {
@@ -27,23 +27,6 @@ class Medecin
      * @ORM\Column(name="specialite_medecin", type="string", length=20, nullable=false)
      */
     private $specialiteMedecin;
-
-    public function getIdMedecin(): ?int
-    {
-        return $this->idMedecin;
-    }
-
-    public function getSpecialiteMedecin(): ?string
-    {
-        return $this->specialiteMedecin;
-    }
-
-    public function setSpecialiteMedecin(string $specialiteMedecin): self
-    {
-        $this->specialiteMedecin = $specialiteMedecin;
-
-        return $this;
-    }
 
 
 }
