@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create new RendezVous</h1>
+
+    {{ include('rendez_vous/_form.html.twig') }}
+
+    <a href="{{ path('rendez_vous_index') }}">back to list</a>
+
+
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<table>
+    <tr>
+        <td> {{ form_label(form.nom,"Nom du patient") }} </td>
+        <td> {{ form_widget(form.nom) }} </td>
+        <td>{{ form_errors(form.nom) }}</td>
+    </tr>
+
+
+    <tr>
+        <td>{{ form_label(form.telephone,"Telephone") }} </td>
+        <td>{{ form_widget(form.telephone) }} </td>
+        <td>{{ form_errors(form.telephone) }}</td>
+
+    </tr>
+
+    <tr>
+        <td>      {{ form_label(form.email,"Email") }} </td>
+        <td>      {{ form_widget(form.email) }} </td>
+        <td>{{ form_errors(form.email) }}</td>
+
+    </tr>
+
+
+
+    <tr>
+        <td>      {{ form_label(form.category,"Category") }} </td>
+        <td>      {{ form_widget(form.category) }} </td>
+        <td>{{ form_errors(form.category) }}</td>
+
+    </tr>
+
+    <tr>
+        <td>      {{ form_label(form.description,"Description") }} </td>
+        <td>      {{ form_widget(form.description) }} </td>
+        <td>{{ form_errors(form.description) }}</td>
+
+    </tr>
+
+    {{ form_end(form) }}
+
+    {% endblock %}

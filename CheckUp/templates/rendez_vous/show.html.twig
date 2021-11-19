@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>RendezVous</title>
+
+{% block body %}
+    <h1>RendezVous</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rendez_vou.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ rendez_vou.nom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ rendez_vou.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ rendez_vou.email }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ rendez_vou.category }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ rendez_vou.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('rendez_vous_index') }}">back to list</a>
+
+    <a href="{{ path('rendez_vous_edit', {'id': rendez_vou.id}) }}">edit</a>
+
+    {{ include('rendez_vous/_delete_form.html.twig') }}
+{% endblock %}
