@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div ng-class="{'multi-part-screen': controls.multiPartScreen, 'container-fluid': form.settings.fluid_layout, 'container': !form.settings.fluid_layout}" class="main-container"><div class="side-menu" ng-if="form.settings.side_menu"><side-menu questions="form.questions" current-screen="controls.currentScreen"
+                     progress="controls.progressBar.progress" on-block-click="navigation.goToScreen(position)"></side-menu></div><div class="form " ng-class="{'has-side-menu': form.settings.side_menu}" ng-cloak><div class="form-content invisible" ng-class="{'has-footer': controls.showFooter, 'back': controls.directionBack}" ng-style="controls.fromContentStyle"><div class="screen-container"
+       ng-repeat="question in form.questions | orderBy: 'position'"
+       ng-show="question.position == controls.currentScreen"
+       screen-id="{{ question.position }}"
+       screen-type="{{ question.type }}"></div></div><div class="form-footer hidden-print" ng-show="controls.showFooter" ng-class="{'has-side-menu': form.settings.side_menu}" ng-cloak><div class="footer-progress" ng-style="{ width: controls.progressBar.progress + '%' }"></div><div class="footer-content"><div class="status ng-cloak"><button class="btn btn-link btn-back-footer hidden-print ng-cloak"
+         ng-class="{ 'hidden' : !controls.showPrevious }"
+         ng-disabled="controls.animationInProgress"
+         ng-click="controls.animationInProgress || navigation.previousScreen()">
+        Back
+      </button><button class="btn btn-primary btn-next hidden-print"
+         ng-class="{ 'hidden': !controls.showNext, 'disabled': controls.animationInProgress || !controls.isScreenValid() }"
+         ng-click="controls.animationInProgress || navigation.nextScreen()">
+        {{controls.nextButtonLabel || 'Next'}}
+      </button><span class="choose-answer-above text-muted hidden-xs" ng-class="{ 'hidden': !controls.showClickAboveHint }">
+        Select an answer above
+      </span><a href="/" class="btn btn-primary btn-finish hidden-print" rel="noopener"
+         ng-class="{ 'hidden' : controls.animationInProgress || !controls.prescreeningFinish.success }"
+         ng-disabled="controls.animationInProgress">
+     
+  </div>
+{% endblock %}
