@@ -1,6 +1,7 @@
+
 {% extends 'base.html.twig' %}
 {% block title %}
-    <title> Ajouter</title>{% endblock %}
+    <title> Chart Statistique</title>{% endblock %}
 {% block css %}
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -19,31 +20,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw([oldColumnChart, newColumnChart, diffColumnChart], ['oldColumnChart', 'newColumnChart', 'diffColumnChart']) }}
+    </script>
+
+
+
 {% endblock %}
 {% block testaffiche %}
     <main id="main" class="main">
 
         <div class="container-mt-4">
-            <h1>Ajouter Patient</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Add</li>
-                    <li class="breadcrumb-item active">Patients</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
-        <h1>Ajouter un patient </h1>
-
-        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
-
-        {{ form_end(form) }}
-        <table>
-            <tr>
-                <td></td>
+            <div id="oldColumnChart"></div>
+            <div id="newColumnChart"></div>
+            <div id="diffColumnChart"></div>
 
 
-            </tr>
-        </table>
+        </div>
+
+
     </main><!-- End #main -->
 {% endblock %}

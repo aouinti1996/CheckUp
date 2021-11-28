@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "4.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
@@ -528,6 +531,9 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/ux-chartjs": {
+        "version": "v1.2.0"
+    },
     "symfony/validator": {
         "version": "4.4",
         "recipe": {
@@ -581,6 +587,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.3.3"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.4"
     },
     "twig/twig": {
         "version": "v3.3.3"

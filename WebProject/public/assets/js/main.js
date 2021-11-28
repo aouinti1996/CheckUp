@@ -19,6 +19,8 @@
     }
   }
 
+
+
   /**
    * Easy event listener function
    */
@@ -317,3 +319,6 @@
   }
 
 })();
+$('#modalRequest').click(function() {
+  $('#myModal').modal('hide');
+});

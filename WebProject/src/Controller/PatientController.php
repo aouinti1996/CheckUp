@@ -10,7 +10,7 @@ use App\Form\ClassroomType;
 use App\Form\PatientType;
 use App\Form\StudentType;
 use App\Repository\ActiviteRepository;
-use App\Repository\UserRepository;
+use App\Repository\userRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class PatientController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('patient/inscription.html.twig', [
+        return $this->render('patient/tabpatient.html.twig', [
             'controller_name' => 'PatientController',
         ]);
     }
@@ -32,7 +32,7 @@ class PatientController extends AbstractController
     /**
      * @Route("/patient/tabpatient", name="affichetabpatient")
      */
-    public function afficherPatients(UserRepository $rep): Response
+    public function afficherPatients(userRepository $rep): Response
     {
   // $listepatients=$rep->findAll();
         $listepatients=$rep->findBy(['role'=>'patient']);
@@ -47,7 +47,7 @@ class PatientController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/patient/supp/{id}", name ="deletepatient")
      */
-    public function delete($id, UserRepository   $repository){
+    public function delete($id, userRepository $repository){
 
 
         $patient=$repository->find($id);
@@ -65,7 +65,7 @@ class PatientController extends AbstractController
 
      */
 
-    public function update(UserRepository $repository,$id,Request  $request){
+    public function update(userRepository $repository, $id, Request $request){
         $patient=$repository->find($id);
         $form=$this->createForm(PatientType::class,$patient);
         //$form->add('update',SubmitType::class);
@@ -93,13 +93,17 @@ class PatientController extends AbstractController
         //$formulaire->add('Ajouter',SubmitType::class);
         $formulaire->handleRequest($request);
         if($formulaire->isSubmitted() && $formulaire->isValid()){
+            $user_find=$this->getDoctrine()->getRepository(User::class)->findBy(['email'=>$patient->getEmail()]);
+            if ($user_find==true){ echo 'failed authentification';
+            }
+            else{
             $em=$this->getDoctrine()->getManager();
             $patient->setSpecialite("");
             $patient->setRole("patient");
             $em->persist($patient);
             $em->flush();
             return $this->redirectToRoute('affichetabpatient');
-        }
+        }}
         return $this->render('patient/addpatient.html.twig',
             ['form'=>$formulaire->createView()]);
 

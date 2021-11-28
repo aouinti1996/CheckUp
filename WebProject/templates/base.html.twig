@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-{% block template %}
+{% block head %}
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="keywords"></head> {% endblock %}
 {%  block title  %}
     <title>Dashboard - NiceAdmin Bootstrap Template</title>
     {% endblock %}
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
+
+{% block css %}
     <!-- Favicons -->
     <link href={{asset('assets/img/favicon.png')}} rel="icon">
     <link href={{asset('assets/img/apple-touch-icon.png')}} rel="apple-touch-icon">
-{% block css %}
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -36,7 +37,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
-</head>
+
 
 <body>
 
@@ -414,17 +415,17 @@
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="charts-chartjs.html">
+                    <a href="{{ path('chart') }}">
                         <i class="bi bi-circle"></i><span>Chart.js</span>
                     </a>
                 </li>
                 <li>
-                    <a href="charts-apexcharts.html">
+                    <a href="{{ path('chart1') }}">
                         <i class="bi bi-circle"></i><span>ApexCharts</span>
                     </a>
                 </li>
                 <li>
-                    <a href="charts-echarts.html">
+                    <a href="{{ path('chart3') }}">
                         <i class="bi bi-circle"></i><span>ECharts</span>
                     </a>
                 </li>
@@ -529,6 +530,7 @@
                 <div class="row">
 
                     <!-- Sales Card -->
+                    {% block sales %}
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
@@ -562,7 +564,7 @@
 
                         </div>
                     </div><!-- End Sales Card -->
-
+{% endblock %}
                     <!-- Revenue Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
@@ -579,7 +581,7 @@
                                     <li><a class="dropdown-item" href="#">This Year</a></li>
                                 </ul>
                             </div>
-
+{% block revenu %}
                             <div class="card-body">
                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
@@ -597,8 +599,9 @@
 
                         </div>
                     </div><!-- End Revenue Card -->
-
+{% endblock revenu %}
                     <!-- Customers Card -->
+                    {% block customers %}
                     <div class="col-xxl-4 col-xl-12">
 
                         <div class="card info-card customers-card">
@@ -634,8 +637,9 @@
                         </div>
 
                     </div><!-- End Customers Card -->
-
+{% endblock %}
                     <!-- Reports -->
+                    {% block chart %}
                     <div class="col-12">
                         <div class="card">
 
@@ -716,8 +720,9 @@
 
                         </div>
                     </div><!-- End Reports -->
-
+{% endblock %}
                     <!-- Recent Sales -->
+
                     <div class="col-12">
                         <div class="card recent-sales">
 
@@ -1185,7 +1190,7 @@
 
 <!-- Template Main JS File -->
 <script src={{asset('assets/js/main.js')}}></script>
-{% endblock %}
+
 </body>
 
 </html>

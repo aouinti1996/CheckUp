@@ -21,7 +21,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Patients Table</h5>
-                            <p>Laliste actuelle des patients <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+                            <p>La liste actuelle des patients <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a></p>
 
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
@@ -47,29 +47,20 @@
 
                                     <td>
 
-                                    <form action="{{ path('deletepatient',{'id':p.id}) }}">
-
-                                        <button type="submit" class="btn btn-primary" >Supprimer</button>
-
-
-                                    </form>
+                                     <a href="{{ path('deletepatient',{'id':p.id}) }}">Supprimer</a>
                                     </td>
                                     <td>
-                                    <form action="{{ path('updatepatient',{'id':p.id}) }}">
 
-                                            <button type="submit" class="btn btn-primary" >Modifier</button>
+                                        <a href="{{ path('updatepatient',{'id':p.id}) }}">Modifier</a>
 
-
-                                    </form>
                                     </td>
                                 </tr>
                               {% endfor %}
                                 </tbody>
                             </table>
                             <td>
-                                <form action="{{ path('addpatient')}}">
-                                <button type="submit" class="btn btn-primary" >créer un noveau patient</button>
-                                </form>
+                                <a href="{{ path('addpatient')}}">créer un noveau patient</a>
+
 
                             </td>
                             <!-- End Table with stripped rows -->

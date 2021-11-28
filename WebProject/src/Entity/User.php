@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 
 /**
@@ -12,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User implements  UserInterface
 {
     /**
      * @var int
@@ -72,6 +75,7 @@ class User
      *
      * @ORM\Column(name="numerotelephone", type="string", length=50, nullable=false)
      * @Assert\NotBlank(message="Get Telephone!")
+     *
      */
     private $numerotelephone;
 
@@ -98,10 +102,7 @@ class User
      */
     private $role;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isVerified = false;
+
 
     /**
      * @return int
@@ -264,21 +265,24 @@ class User
         $this->role = $role;
     }
 
-    /**
-     * @return bool
-     */
-    public function isVerified(): bool
+
+    public function getRoles()
     {
-        return $this->isVerified;
+        // TODO: Implement getRoles() method.
     }
 
-    /**
-     * @param bool $isVerified
-     */
-    public function setIsVerified(bool $isVerified): void
+    public function getSalt()
     {
-        $this->isVerified = $isVerified;
+        // TODO: Implement getSalt() method.
     }
 
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
 
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

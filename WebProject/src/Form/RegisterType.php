@@ -50,9 +50,16 @@ class RegisterType extends AbstractType
 
                 ]],
     ])
-          //  ->add('Enregistrer',SubmitType::class)
 
-        ;
+        ->add('role',HiddenType::class, [
+        'data' => 'patient',
+    ])
+        ->add('specialite',HiddenType::class, [
+            'data' => 'medecin',
+        ])
+
+        ->add('Enregistrer',SubmitType::class);
+        //->add('Modifier',SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
