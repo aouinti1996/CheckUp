@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RdvmailController!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('description')%}
+        <div class= "alert alert-success" role ="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>Rdvmail ! </h1>
+    {{ form(rdvmailForm) }}
+{% endblock %}
