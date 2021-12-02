@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="Col"> {{ form_row(form.object) }}</div>
+    <div class="Col"> {{ form_row(form.category) }}</div>
+</div>
+<div class="row">
+    <div class="Col"> {{ form_row(form.description) }}</div>
+    <div class="Col"> {{ form_row(form.screenshot) }}</div>
+</div>
+<button type="btn" class="btn btn-outline-success">Save</button>
+{{ form_end(form) }}
