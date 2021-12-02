@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{%  block title  %}
+    <title>Dashboard - CheckupAdmin </title>
+{% endblock %}
+{% block testaffiche %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Medecins Tables</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Medecins</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Table des Medecins</h5>
+                            <p>La liste actuelle des medecins <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> </p>
+
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Date Naissance</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Numero de Telephone</th>
+                                    <th scope="col">Specialite</th>
+                                    <th scope="col">Supprimer</th>
+                                    <th scope="col">Modifier</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for m in tabmedecins %}
+                                    <tr>
+                                        <td scope="row">{{ m.nom }}</td>
+                                        <td>{{ m.prenom }}</td>
+                                        <td>{{ m.datenaissance |date }}</td>
+                                        <td>{{ m.email }}</td>
+                                        <td>{{ m.numerotelephone }}</td>
+                                        <td>{{ m.specialite }}</td>
+
+
+                                        <td>
+
+                                            <a href="{{ path('deletemedecin',{'id':m.id}) }}">Supprimer</a>
+                                        </td>
+                                        <td>
+
+                                            <a href="{{ path('updatemedecin',{'id':m.id}) }}">Modifier</a>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <td>
+                                <a href="{{ path('addmedecin')}}">créer un noveau medecin</a>
+                                {{ knp_pagination_render(tabmedecins) }}
+
+                            </td>
+                            <!-- End Table with stripped rows -->
+
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+
+
+
+{% endblock %}

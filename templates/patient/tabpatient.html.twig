@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block testaffiche %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Patients Tables</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Patients</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Patients Table</h5>
+                            <p>La liste actuelle des patients <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a></p>
+                            <div class="col-lg-12">
+                            <form method="post" action="{{ path('seraching') }}">
+    <input type="text" name="search" placeholder="Search..."/>
+<input type="submit"  value="Search"/>
+</form>
+                            </div>
+                            <div class="col-lg-12">
+                            <form method="post" action="{{ path('trierpatient') }}">
+                                <select name="choix_trie" id="cC_trie">
+                                    <option value="nom">Nom</option>
+                                    <option value="prenom">Prenom</option>
+                                    <option value="dateNai">date Naissance</option>
+                                    <option value="email">Email</option>
+                                    <option value="tel">Numero de Telephone</option>
+                                </select>
+                                <input type="submit"  value="Trier"/>
+                            </form>
+                            </div>
+                            <!-- Table with stripped rows -->
+                            <table class="table ">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Date Naissance</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Numero de Telephone</th>
+                                    <th scope="col">Supprimer</th>
+                                    <th scope="col">Modifier</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for p in tabpatients %}
+                                <tr>
+                                    <td scope="row">{{ p.nom }}</td>
+                                    <td>{{ p.prenom }}</td>
+                                    <td>{{ p.datenaissance |date }}</td>
+                                    <td>{{ p.email }}</td>
+                                    <td>{{ p.numerotelephone }}</td>
+
+                                    <td>
+
+                                     <a href="{{ path('deletepatient',{'id':p.id}) }}">Supprimer</a>
+                                    </td>
+                                    <td>
+
+                                        <a href="{{ path('updatepatient',{'id':p.id}) }}">Modifier</a>
+
+                                    </td>
+                                </tr>
+                              {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <td>
+                                <a href="{{ path('addpatient')}}">créer un noveau patient</a>
+
+
+
+
+                            </td>
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+
+
+
+{% endblock %}
