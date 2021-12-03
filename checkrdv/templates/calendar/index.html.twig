@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basefront.html.twig' %}
 
 {% block title %}Calendar index{% endblock %}
 
@@ -44,6 +44,6 @@
         {% endfor %}
         </tbody>
     </table>
-
     <a href="{{ path('calendar_new') }}">Create new</a>
+    <a href="{{ path('main') }}">design</a>
 {% endblock %}

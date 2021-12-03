@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basefront.html.twig' %}
 
 {% block title %}Hello RdvmailController!{% endblock %}
 
@@ -9,5 +9,7 @@
         </div>
     {% endfor %}
     <h1>Rdvmail ! </h1>
+
     {{ form(rdvmailForm) }}
+    <a href="{{ path('main') }}">design</a>
 {% endblock %}
