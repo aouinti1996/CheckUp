@@ -50,14 +50,7 @@ class ReclamationController extends AbstractController
             $entityManager->persist($reclamation1);
             $entityManager->flush();
             //email
-            $message=(new \Swift_Message('Reclamation'))
-                ->setFrom(['theoptimizers7@gmail.com' => 'the optimizers'])
-                ->setTo('houssem095@gmail.com')
-                ->setBody($this->renderView(
-                    'emails/email.html.twig', compact('reclamation1')
-                ),'text/html'
-                );
-            $mailer->send($message);
+
             return $this->redirectToRoute('reclamation_index', [], Response::HTTP_SEE_OTHER);
 
         }

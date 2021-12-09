@@ -48,7 +48,7 @@ class AdminReclamationController extends AbstractController
     /**
      * @Route("/reclamation/{id}/edit", name="reclamation_reply", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, int $id): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, int $id,\Swift_Mailer $mailer): Response
     {
         $reponse = new Reponse();
         $form = $this->createForm(ReponseType::class, $reponse);
@@ -62,7 +62,14 @@ class AdminReclamationController extends AbstractController
             $reclamation->setStatus("traiter");
             $entityManager->persist($reclamation);
             $entityManager->flush();
-
+            $message=(new \Swift_Message('Reclamation'))
+                ->setFrom(['theoptimizers7@gmail.com' => 'the optimizers'])
+                ->setTo('houssem095@gmail.com')
+                ->setBody($this->renderView(
+                    'emails/emailrep.html.twig', compact('reponse','reclamation')
+                ),'text/html'
+                );
+            $mailer->send($message);
             return $this->redirectToRoute('admin_reclamation', [], Response::HTTP_SEE_OTHER);
         }
 
