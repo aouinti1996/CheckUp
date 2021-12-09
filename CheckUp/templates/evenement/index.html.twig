@@ -1,0 +1,83 @@
+
+{% block body %}
+    <h1>Evenement index</h1>
+
+    <table class="table" border="2">
+        <thead>
+            <tr>
+                <th>Ideven</th>
+                <th>Titreeven</th>
+                <th>Descriptioneven</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Lieueven</th>
+                <th>Invitees</th>
+                <th>Respensable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.ideven }}</td>
+                <td>{{ evenement.titreeven }}</td>
+                <td>{{ evenement.descriptioneven }}</td>
+                <td>{{ evenement.datedebut ? evenement.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.datefin ? evenement.datefin|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.lieueven }}</td>
+                <td>{{ evenement.invitees }}</td>
+                <td>{{ evenement.respensable }}</td>
+                <td>
+                    <a href="{{ path('evenement_show', {'ideven': evenement.ideven}) }}">show</a>
+                    <a href="{{ path('evenement_edit', {'ideven': evenement.ideven}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('evenement_new') }}">Create new</a>
+{% endblock %}
+
+{% block evenements %}
+    <section class="ftco-section bg-light" id="evenements">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Evenements</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+            <div class="row d-flex">
+
+                {% for evenement in evenements %}
+                    <div class="col-md-4 ftco-animate">
+                        <div class="blog-entry">
+                            <a href="blog-single.html" class="block-20" style="background-image: url('front/images/image_4.jpg');">
+                            </a>
+                            <div class="text d-block">
+                                <div class="meta mb-3">
+                                    <div><a href="#">June 9, 2019</a></div>
+                                    <div><a href="#">Admin</a></div>
+                                    <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                                </div>
+                                <h3 class="heading"><a href="#">Scary Thing That You Don’t Get Enough Sleep</a></h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    No records found
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
