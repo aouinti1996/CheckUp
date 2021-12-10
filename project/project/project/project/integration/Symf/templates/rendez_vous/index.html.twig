@@ -1,0 +1,43 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}LISTE DES RENDEZ VOUS{% endblock %}
+
+{% block body %}
+    <h1><strong><mark>RendezVous LISTE</mark></strong></h1>
+    <!-- <input type="text" name="nom" placeholder="checher par nom de patient"> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rendez_vou in rendez_vouses %}
+            <tr>
+                <td>{{ rendez_vou.id }}</td>
+                <td>{{ rendez_vou.nom }}</td>
+                <td>{{ rendez_vou.telephone }}</td>
+                <td>{{ rendez_vou.email }}</td>
+                <td>{{ rendez_vou.category }}</td>
+                <td>{{ rendez_vou.description }}</td>
+                <td>
+                    <a href="{{ path('rendez_vous_show', {'id': rendez_vou.id}) }}">show</a>
+                    <a href="{{ path('rendez_vous_edit', {'id': rendez_vou.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rendez_vous_new') }}">Create new</a>
+{% endblock %}

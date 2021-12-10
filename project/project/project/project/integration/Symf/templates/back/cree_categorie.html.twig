@@ -1,0 +1,28 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+
+    <main id="main" class="main">
+        <div class="col-lg-10">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h1>Créer nouveau Evenement</h1>
+
+                    {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+                    {{ form_label(form.nomCategorie, 'Titre', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.nomCategorie, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+                    {{ form_errors(form.nomCategorie) }}
+
+                    <br>
+                    {{ form_widget(form.Enregistrer, {'attr': {'style': 'width: 300px'} + {'class':'btn btn-success'}}) }}
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "Back/Backoffice.html.twig" %}
+{% block body %}
+    <title>Edit Reponse</title>
+
+    <main id="main" class="main">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+
+                    <h1>Edit Reponse</h1>
+
+                    {{ include('admin_reclamation/_form.html.twig', {'button_label': 'Update Reponse'}) }}
+
+                    <a href="{{ path('admin_reclamation') }}"><button type="button" class="btn btn-outline-info btn-sm">back to list</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--  -->
+{% endblock %}

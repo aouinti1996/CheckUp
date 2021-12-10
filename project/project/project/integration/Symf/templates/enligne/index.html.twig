@@ -1,0 +1,39 @@
+{% extends 'baserdv.html.twig' %}
+
+{% block title %}Enligne index{% endblock %}
+
+{% block body %}
+    <h1>Enligne index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Emailmed</th>
+                <th>Emailpat</th>
+                <th>Lien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for enligne in enlignes %}
+            <tr>
+                <td>{{ enligne.id }}</td>
+                <td>{{ enligne.emailmed }}</td>
+                <td>{{ enligne.emailpat }}</td>
+                <td>{{ enligne.lien }}</td>
+                <td>
+                    <a href="{{ path('enligne_show', {'id': enligne.id}) }}">show</a>
+                    <a href="{{ path('enligne_edit', {'id': enligne.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('enligne_new') }}">Create new</a>
+{% endblock %}

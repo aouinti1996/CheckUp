@@ -1,0 +1,30 @@
+{
+    "name": "vangrg/profanity-bundle",
+    "description": "Checker for bad words.",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Ivan Griga",
+            "email": "grigaivan2@gmail.com"
+        }
+    ],
+    "keywords": ["symfony", "bad", "words", "bundle", "profanity", "filter", "censor"],
+    "license": [
+        "MIT"
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "symfony/framework-bundle": "^2.7|^3.0|^4.0"
+    },
+    "suggest": {
+        "doctrine/orm": ">=2.4"
+    },
+    "autoload": {
+        "psr-4": {"Vangrg\\ProfanityBundle\\": ""}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

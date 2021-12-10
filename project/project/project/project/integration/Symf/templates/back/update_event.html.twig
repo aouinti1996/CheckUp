@@ -1,0 +1,50 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+
+    <title>Update Evenement</title>
+    <main id="main" class="main">
+        <div class="col-lg-10">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h1>Modifier Evenement</h1>
+
+                    {{ form_start(form) }}
+
+                    {{ form_label(form.titreeven, 'Titre', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.titreeven, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.descriptioneven, 'Description', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.descriptioneven, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.dateDebut, 'Date debut',  {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.dateDebut, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.dateFin, 'Date fin', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.dateFin, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.lieuEven, 'Lieu', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.lieuEven, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.invites, 'Invitee', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.invites, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.responsable, 'Responsable', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.responsable, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+                    {{ form_label(form.imageFile, 'Image', {'label_attr': {'class':'col-sm-2 col-form-label'}}) }}
+                    {{ form_widget(form.imageFile, {'attr': {'style': 'width: 300px'} + {'class':'form-control col-sm-10'}}) }}
+
+
+                    <br>
+                    {{ form_widget(form.Enregistrer, {'attr': {'style': 'width: 300px'} + {'class':'btn btn-success'}}) }}
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

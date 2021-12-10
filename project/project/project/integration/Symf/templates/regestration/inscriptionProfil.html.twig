@@ -1,0 +1,197 @@
+{% extends 'base.html.twig'  %}
+{% block inscrire %}
+{% endblock%}
+{% block login %}
+{% endblock%}
+
+
+
+ {% block title %} <title>S'inscrire!!!</title> {% endblock %}
+{% block css2 %}
+ <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
+{% endblock %}
+{% block jss3 %}
+ <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+ <style>
+
+  .form-control:focus {
+   box-shadow: none;
+   border-color: #BA68C8
+  }
+
+  .profile-button {
+   background: rgb(99, 39, 120);
+   box-shadow: none;
+   border: none
+  }
+
+  .profile-button:hover {
+   background: #682773
+  }
+
+  .profile-button:focus {
+   background: #682773;
+   box-shadow: none
+  }
+
+  .profile-button:active {
+   background: #682773;
+   box-shadow: none
+  }
+
+  .back:hover {
+   color: #682773;
+   cursor: pointer
+  }
+
+  .labels {
+   font-size: 11px;
+
+  }
+
+  .add-experience:hover {
+   background: #BA68C8;
+   color: #fff;
+   cursor: pointer;
+   border: solid 1px #BA68C8
+  }
+
+  .labells {
+   font-size: 15px;
+   color: #c80000;
+  }
+
+
+ </style>
+{% endblock %}
+
+
+
+
+
+
+{% block contenu %}
+ {% for message in app.flashes('success') %}
+  <div class="alert alert-success">{{ message }}</div>{% endfor %}
+ {{form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+ <div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+   <div class="col-md-3 border-right">
+    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+
+     <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Patient</span><span class="text-black-50"></span><span> </span></div>
+     {{ form_widget(form.imageFile,{'attr': {'class':"col-md-9 border-right"}})}}
+
+    </div>
+   </div>
+
+   <div class="col-md-5 border-right">
+    <div class="p-3 py-5">
+     <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="text-right">Profile Settings</h4>
+     </div>
+
+     <div class="row mt-2">
+
+      <div class="col-md-6">
+
+
+       {{ form_label(form.nom, 'Nom', { 'label_attr': {'class': 'labels'} })}}
+       {{ form_errors(form.nom) }}
+       {{ form_widget(form.nom,{'attr': {'class': "form-control"}})}}
+
+
+      </div>
+      <div class="col-md-6">
+
+
+
+       {{ form_label(form.prenom, 'Prenom', { 'label_attr': {'class': 'labels'} })}}
+       {{ form_errors(form.prenom) }}
+       {{ form_widget(form.prenom,{'attr': {'class': "form-control"}})}}
+
+
+
+
+
+
+      </div>
+
+      <div class="row mt-3">
+
+       <div class="col-md-12">
+
+        {{ form_label(form.datenaissance, 'Date Naissance', { 'label_attr': {'class': 'labels'} })}}
+        {{ form_errors(form.datenaissance) }}
+        {{ form_widget(form.datenaissance,{'attr': {'class': "form-control"}})}}
+
+
+
+       </div>
+       <div class="col-md-12">
+        {{ form_label(form.email, 'Email', { 'label_attr': {'class': 'labels'} })}}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email,{'attr': {'class': "form-control"}})}}
+
+       </div>
+
+       <div class="col-md-12">
+        {{ form_label(form.numerotelephone, 'Numero de Telephone', { 'label_attr': {'class': 'labels'} })}}
+        {{ form_errors(form.numerotelephone) }}
+        {{ form_widget(form.numerotelephone,{'attr': {'class': "form-control"}})}}
+       </div>
+
+       <div class="row mt-3">
+        <div class="col-md-">
+         {{ form_label(form.adresse, 'Votre Adresse', { 'label_attr': {'class': 'labels'} })}}
+         {{ form_errors(form.adresse) }}
+         {{ form_widget(form.adresse,{'attr': {'class': "form-control"}})}}
+
+        </div>
+
+       </div>
+       <div class="row mt-3">
+        <div class="col-md-">
+
+         {{ form_label(form.password, 'Votre Password', { 'label_attr': {'class': 'labels'} })}}
+         <div class ="labells">
+          {{ form_errors(form.password)}}
+         </div>
+         {{ form_widget(form.password,{'attr': {'class': "form-control"}})}}
+
+        </div>
+
+       </div>
+
+       <div class="row mt-3">
+        <div class="col-md-">
+
+
+         {{ form_row(form.captchaCode,{'attr': {'class': 'error-message'} })}}
+        </div>
+       </div>
+       <div class="mt-5 text-center">
+
+
+        {{ form_widget(form.save, { 'label': 'Save Profil' }) }}
+
+       </div>
+      </div>
+     </div>
+
+
+
+
+    </div>
+
+   </div>
+  </div>
+ </div>
+ {{ form_end(form) }}
+{% endblock %}
+{% block jss2 %}
+ <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+ <script type='text/javascript' src=''></script>
+ <script type='text/javascript'></script>
+{% endblock %}
+

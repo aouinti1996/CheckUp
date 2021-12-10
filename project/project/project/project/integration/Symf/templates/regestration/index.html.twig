@@ -1,0 +1,128 @@
+{% extends 'front/front.html.twig'  %}
+   {% block title %} <title>Snippet - BBBootstrap</title> {% endblock %}
+{% block css2 %}
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
+{% endblock %}
+{% block jss3 %}
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <style>
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #BA68C8
+        }
+
+        .profile-button {
+            background: rgb(99, 39, 120);
+            box-shadow: none;
+            border: none
+        }
+
+        .profile-button:hover {
+            background: #682773
+        }
+
+        .profile-button:focus {
+            background: #682773;
+            box-shadow: none
+        }
+
+        .profile-button:active {
+            background: #682773;
+            box-shadow: none
+        }
+
+        .back:hover {
+            color: #682773;
+            cursor: pointer
+        }
+
+        .labels {
+            font-size: 11px
+        }
+
+        .add-experience:hover {
+            background: #BA68C8;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #BA68C8
+        }</style>
+{% endblock %}
+{% block inscrire %}
+{% endblock %}
+
+
+{% block login %}
+    {% if app.user %}
+    <li class="nav-item cta"><a href="{{ path('app_logout') }}"  class="nav-link" ><span>Login Out</span><i class="bi bi-chevron-down"></i></a>
+    </li>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block contenu %}
+    <form name="fupdate" method="post" action="{{ path('updateprofil',{'id':app.user.id}) }}">
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src=src="{{ asset('/images/saloons/' ~  user.image  ) }}"><span class="font-weight-bold">User</span><span class="text-black-50">{{app.user.email}}</span><span> </span></div>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+
+                <div class="row mt-2">
+
+                    <div class="col-md-6"><label class="labels">Nom</label><input type="text" class="form-control" placeholder="first name" name="name" value="{{app.user.nom }}" required></div>
+                    <div class="col-md-6"><label class="labels">Prenom</label><input type="text"  name="prenom" class="form-control" value="{{app.user.prenom }}" placeholder="surname" required></div>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-md-12"><label class="labels">Date de naissance</label><input type="date" name="datenaissance" class="form-control" value="{{app.user.datenaissance| date('Y-m-d') }}" required></div>
+                    <div class="col-md-12"><label class="labels">Adresse Email</label><input type="text"  name="email" class="form-control" placeholder="enter Adresse Email " value="{{app.user.email }}" disabled></div>
+
+                    <div class="col-md-12"><label class="labels">Numero de Telephone </label><input type="tel"  name="numerotelephone" class="form-control" placeholder="enter Numero de Telephone " value="{{app.user.numerotelephone }}" pattern="[0-9]{8}" required></div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-"><label class="labels">Adresse</label><input type="text" name="adresse"  class="form-control" placeholder="entrer Adresse" value="{{app.user.adresse}}" required></div>
+
+                </div>
+                {% if app.user.role == 'medecin' %}
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Specialite</label>
+
+
+                        <select class="col-md-12" id="specialite" name="specialite" >
+                            <option value="{{app.user.specialite }}">{{app.user.specialite }}</option>
+                            <option value="pediatrie">pediatrie</option>
+                            <option value="biologiste">biologiste</option>
+                            <option value="generaliste">generaliste</option>
+                        </select>
+
+
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+        </div>
+
+</div>
+</div>
+</div>
+    </form>
+{% endblock %}
+{% block jss2 %}
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+<script type='text/javascript' src=''></script>
+<script type='text/javascript'></script>
+{% endblock %}
+

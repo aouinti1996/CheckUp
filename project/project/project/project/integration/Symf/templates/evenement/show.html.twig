@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<title>Evenement</title>
+
+{% block body %}
+    <h1>Evenement</h1>
+
+    <table class="table" border="2">
+        <tbody>
+            <tr>
+                <th>Titreeven</th>
+                <td>{{ evenement.titreeven }}</td>
+            </tr>
+            <tr>
+                <th>Descriptioneven</th>
+                <td>{{ evenement.descriptioneven }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ evenement.datedebut ? evenement.datedebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ evenement.datefin ? evenement.datefin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieueven</th>
+                <td>{{ evenement.lieueven }}</td>
+            </tr>
+            <tr>
+                <th>Invitees</th>
+                <td>{{ evenement.invites }}</td>
+            </tr>
+            <tr>
+                <th>Respensable</th>
+                <td>{{ evenement.responsable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('evenement_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('evenement_edit', {'ideven': evenement.id}) }}">Modifier</a>
+
+    {{ include('evenement/_delete_form.html.twig') }}
+{% endblock %}

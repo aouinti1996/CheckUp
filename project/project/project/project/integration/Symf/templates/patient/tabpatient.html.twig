@@ -1,0 +1,105 @@
+{% extends 'base2.html.twig' %}
+{% block testaffiche %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Table des patients</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Table</li>
+                    <li class="breadcrumb-item active">Patient</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Patients Table</h5>
+                            <p>La liste actuelle des patients <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a></p>
+                            <div class="col-lg-12">
+                            <form method="post" action="{{ path('affichetabpatient') }}">
+                        <input type="text"  class="input-group-prepend" name="search" placeholder="Search..."/>
+                                <button class="btn btn-outline-primary" type="submit">Search</button><br><br>
+</form>
+                            </div>
+                            <div class="col-lg-12">
+                            <form method="post" action="{{ path('trierpatient') }}">
+
+                                    <select class="browser-default custom-select">
+                                    <option value="nom">Nom</option>
+                                    <option value="prenom">Prenom</option>
+                                    <option value="dateNai">date Naissance</option>
+                                    <option value="email">Email</option>
+                                    <option value="tel">Numero de Telephone</option>
+                                </select>
+
+                                <button class="btn btn-outline-primary" type="submit">Trier</button>
+                            </form>
+                            </div>
+                            <!-- Table with stripped rows -->
+                            <table class="table ">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Date Naissance</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">N°de Telephone</th>
+                                    <th scope="col">Photo</th>
+                                    <th scope="col">Modifier</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for p in tabpatients %}
+                                <tr>
+                                    <td scope="row">{{ p.nom }}</td>
+                                    <td>{{ p.prenom }}</td>
+                                    <td>{{ p.datenaissance |date }}</td>
+                                    <td>{{ p.email }}</td>
+                                    <td>{{ p.numerotelephone }}</td>
+
+                                     <td><img src="{{ asset('/images/saloons/' ~  p.image  ) }}" width="100px"/> </td>
+
+
+                                    <td>
+
+                                        <a href="{{ path('updatepatient',{'id':p.id}) }}">Modifier</a>
+
+                                    </td>
+                                </tr>
+                              {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                            <td>
+                                <a href="{{ path('Adminaddpatient')}}">créer un noveau patient</a>
+
+
+
+
+                            </td>
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <div class="text-center">{{ knp_pagination_render(tabpatients) }}</div>
+    </main><!-- End #main -->
+
+
+
+
+{% endblock %}
